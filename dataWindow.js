@@ -12,4 +12,8 @@ module.exports = () => {
 
   bgDataWin.loadURL(`file://${__dirname}/renderer/viewdata.html`)
 
+  bgDataWin.on('closed', () => {
+    bgDataWin = null
+  })
+
 }

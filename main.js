@@ -2,7 +2,7 @@
 const { app, ipcMain } = require('electron')
 const mainWindow = require('./mainWindow')
 const dataWindow = require('./dataWindow')
-
+const updater = require('./updater')
 
 // listen from ipcrenderer
 ipcMain.on('view-data', (e) => {
@@ -10,7 +10,13 @@ ipcMain.on('view-data', (e) => {
   dataWindow()
 })
 // run createWindow on mainWindow module
-app.on('ready', mainWindow.createWindow)
+app.on('ready', () => {
+  // Create main window
+  mainWindow.createWindow()
+
+  // Check for update after x seconds
+  setTimeout(updater.check, 2000)
+})
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {

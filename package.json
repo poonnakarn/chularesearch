@@ -1,6 +1,6 @@
 {
   "name": "ChulaResearch",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Chula Resarch toolkit",
   "main": "main.js",
   "author": "Poonnakarn Panjasriprakarn",
@@ -16,9 +16,15 @@
       "buildResources": "."
     },
     "mac": {
+      "publish": [
+        "github"
+      ],
       "category": "public.app-category.productivity"
     },
     "win": {
+      "publish": [
+        "github"
+      ],
       "certificateFile": "private/chularesearch.p12",
       "verifyUpdateCodeSignature": false
     }
@@ -30,6 +36,8 @@
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "electron-log": "^3.0.3",
+    "electron-updater": "^4.0.6",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.7"
   }
