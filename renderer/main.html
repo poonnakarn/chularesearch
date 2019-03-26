@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Chualongkorn Hospital Research Test Kit</title>
+
+  <link rel="stylesheet" href="css/clock.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/stroop.css">
+</head>
+
+<body>
+  <!-- START HERE -->
+  <nav class="navbar navbar-expand-md navbar-light fixed-top py-4">
+    <div class="container">
+      <a id="home" class="navbar-brand">
+        <img src="img/logo.png" width="50" height="50" alt="">
+        <h3 class="d-inline align-middle">Chula Research</h3>
+      </a>
+      <button class="navbar-toggler" data-togle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icons"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item">
+            <a id="newPatient" class="nav-link" data-toggle="modal" data-target="#newModal"><i class="fa fa-plus"></i>
+              New Patient</a>
+          </li>
+          <li class="nav-item">
+            <a id="saveData" class="nav-link" data-toggle="modal" data-target="#saveModal">Save</a>
+          </li>
+          <li class="nav-item">
+            <a id="viewData" class="nav-link">View</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SHOWCASE -->
+  <section id="showcase" class="py-3">
+    <div class="primary-overlay text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col text-center">
+            <h1 id="displayPatient" class="mt-4 pt-3 display-4">ยังไม่มีผู้ป่วยปัจจุบัน</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 text-center">
+            <a id="startPVSAT"><img src="img/pvnst.png" alt="" class="img-fluid d-none d-lg-block"></a>
+          </div>
+          <div class="col-lg-6 text-center">
+            <a id="startStroop">
+              <img src="img/stroop.png" alt="" class="img-fluid d-none d-lg-block"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PVSAT module -->
+  <section class="pvsat">
+    <div class="alert alert-primary dataPVSAT">
+      Elements: 0/0, Accuracy = 0%
+    </div>
+    <div class="container">
+      <div class="row">
+        <div id="clock">
+          <div class="num num1">
+            <div>1</div>
+          </div>
+          <div class="num num2">
+            <div>2</div>
+          </div>
+          <div class="num num3">
+            <div>3</div>
+          </div>
+          <div class="num num4">
+            <div>4</div>
+          </div>
+          <div class="num num5">
+            <div>5</div>
+          </div>
+          <div class="num num6">
+            <div>6</div>
+          </div>
+          <div class="num num7">
+            <div>7</div>
+          </div>
+          <div class="num num8">
+            <div>8</div>
+          </div>
+          <div class="num num9">
+            <div>9</div>
+          </div>
+          <div class="num num10">
+            <div>10</div>
+          </div>
+          <div class="num num11">
+            <div>11</div>
+          </div>
+          <div class="num num12">
+            <div>12</div>
+          </div>
+          <div class="num num13">
+            <div>13</div>
+          </div>
+          <div class="num num14">
+            <div>14</div>
+          </div>
+          <div class="box">&nbsp;</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Stroop -->
+  <div class="stroopModule">
+    <div class="stroopText">
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="newModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newModalLabel">New Patient</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>กรุณาใส่รหัสผู้ป่วยเพื่อเพิ่มผุ้ป่วยใหม่</p>
+          <input class="input" id="patientId" type="number">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="add-button" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="saveModal" tabindex="-1" role="dialog" aria-labelledby="saveModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="saveModalLabel">บันทึก</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="saveModalBody">
+          <p>บันทึกข้อมูลเรียบร้อย</p>
+        </div>
+        <div class="modal-footer">
+          <button id="save-button" type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // jQuery
+    $ = require('jquery')
+
+    // Bootstrap & popper
+    require('popper.js')
+    require('bootstrap')
+
+    // App script
+    require('./app.js')
+    require('./pvsat.js')
+  </script>
+
+</body>
+
+</html>

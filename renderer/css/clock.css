@@ -1,0 +1,181 @@
+:root {
+  --size: 600px;
+}
+
+
+
+#clock {
+  width: var(--size);
+  height: var(--size);
+  background-color: #fff;
+  border: 2vmin solid #000;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 0 black;
+  position: relative;
+  margin: auto;
+  box-shadow:
+        inset 40px 40px 90px rgba(0,0,0,.2),
+        inset 10px 10px 30px rgba(0,0,0,.5),
+        20px 20px 30px rgba(0,0,0,.4),
+        40px 40px 60px rgba(0,0,0,.4);
+
+}
+
+
+.num{
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  left: calc(50% - 4em);
+}
+
+.num div {
+  width: 2em;
+  line-height: 1.3em;
+  color: black;
+  text-align:center;
+  font-size: 4em;
+  border-radius: 50%;
+  font-family: sans-serif;
+  vertical-align: middle;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.num div:hover, .num div:focus {
+  background: green;
+  color: white;
+  font-weight: bold;
+}
+
+
+
+.num1 {
+  transform: rotate(25.714deg);
+}
+
+.num1 div {
+  transform: rotate(-25.714deg);
+}
+
+.num2 {
+  transform: rotate(51.429deg);
+}
+
+.num2 div {
+  transform: rotate(-51.429deg);
+}
+
+.num3 {
+  transform: rotate(77.143deg);
+}
+
+.num3 div {
+  transform: rotate(-77.143deg);
+}
+
+.num4 {
+  transform: rotate(102.857deg);
+}
+
+.num4 div {
+  transform: rotate(-102.857deg);
+}
+
+.num5 {
+  transform: rotate(128.571deg);
+}
+
+.num5 div {
+  transform: rotate(-128.571deg);
+}
+
+.num6 {
+  transform: rotate(154.286deg);
+}
+
+.num6 div {
+  transform: rotate(-154.286deg);
+}
+
+.num7 {
+  transform: rotate(180deg);
+}
+
+.num7 div {
+  transform: rotate(-180deg);
+}
+
+.num8 {
+  transform: rotate(205.714deg);
+}
+
+.num8 div {
+  transform: rotate(-205.714deg);
+}
+
+.num9 {
+  transform: rotate(231.429deg);
+}
+
+.num9 div {
+  transform: rotate(-231.429deg);
+}
+
+.num10 {
+  transform: rotate(257.143deg);
+}
+
+.num10 div {
+  transform: rotate(-257.143deg);
+}
+
+.num11 {
+  transform: rotate(282.857deg);
+}
+
+.num11 div {
+  transform: rotate(-282.857deg);
+}
+
+.num12 {
+  transform: rotate(308.571deg);
+}
+
+.num12 div {
+  transform: rotate(-308.571deg);
+}
+
+.num13 {
+  transform: rotate(334.286deg);
+}
+
+.num13 div {
+  transform: rotate(-334.286deg);
+}
+
+.num14 {
+  transform: rotate(360deg);
+}
+
+.num14 div {
+  transform: rotate(-360deg);
+}
+
+.box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border: 1px solid #fff8dc;
+    background-color: #fff;
+    padding: 0.2em;
+    box-shadow: inset 0px 7px 12px rgba(0,0,0,.4);
+    border-radius: 5px;
+    min-width: 70px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 7em;
+    font-weight: bold;
+    color: black;
+}

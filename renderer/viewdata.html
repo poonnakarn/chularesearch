@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Data</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <table class="table" id="dataTable">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">PVSAT accuracy</th>
+        <th scope="col">PVSAT mean time</th>
+        <th scope="col">Stroop accuracy</th>
+        <th scope="col">Stroop mean time</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+
+  <script>
+    // jQuery
+    $ = require('jquery')
+
+    // Bootstrap & popper
+    require('popper.js')
+    require('bootstrap')
+
+    for (let i = 0, len = localStorage.length; i < len; i++) {
+      newData = JSON.parse(localStorage[localStorage.key(i)])
+      $('#dataTable tbody').append(`<tr>
+        <th scope="row">${localStorage.key(i)}</th>
+        <td>${newData.pvsat_acc.toFixed(2)}</td>
+        <td>${newData.pvsat_mean.toFixed(2)}</td>
+        <td>${newData.stroop_acc.toFixed(2)}</td>
+        <td>${newData.stroop_mean.toFixed(2)}</td>
+      </tr>`)
+    }
+  </script>
+</body>
+
+</html>
