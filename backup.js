@@ -1,43 +1,40 @@
 // Modules
-const { dialog, BrowserWindow, ipcMain } = require('electron')
 const { autoUpdater } = require('electron-updater')
+const { dialog, BrowserWindow, ipcMain } = require('electron')
 
-// // Enable logging
-const log = require('electron-log');
-autoUpdater.logger = log;
-autoUpdater.logger.transports.file.level = 'info';
-log.info('App starting...');
+// Enable logging
+autoUpdater.logger = require('electron-log')
+autoUpdater.logger.transports.file.level = 'info'
 
 // Disable auto downloading
 autoUpdater.autoDownload = false
 
-// Check for updates
+// Check for update
 exports.check = () => {
-
   // Start update check
   autoUpdater.checkForUpdates()
 
-  // Listen for download (update) found
+  // Listen for update found
   autoUpdater.on('update-available', () => {
 
-    // Track progress percent
+    // Track download percent
     let downloadProgress = 0
 
-    // Prompt user to update
+    // Prompt user
     dialog.showMessageBox({
       type: 'info',
       title: 'Update Available',
-      message: 'A new version of Readit is available. Do you want to update now?',
+      message: 'เวอร์ชันใหม่ของ Chula Research ออกแล้ว อัพเดทเลย?',
       buttons: ['Update', 'No']
     }, (buttonIndex) => {
 
-      // If not 'Update' button, return
+      // If not update button -> return
       if (buttonIndex !== 0) return
 
-      // Else start download and show download progress in new window
+      // Else start download & show download progress
       autoUpdater.downloadUpdate()
 
-      // Create progress window
+      // Progress window
       let progressWin = new BrowserWindow({
         width: 350,
         height: 35,
@@ -49,41 +46,38 @@ exports.check = () => {
         resizable: false
       })
 
-      // Load progress HTML
+      // Load content HTML progress window
       progressWin.loadURL(`file://${__dirname}/renderer/progress.html`)
 
-      // Handle win close
+      // on close
       progressWin.on('closed', () => {
         progressWin = null
       })
 
-      // Listen for preogress request from progressWin
+      // Listen for progress request
       ipcMain.on('download-progress-request', (e) => {
         e.returnValue = downloadProgress
       })
 
-      // Track download progress on autoUpdater
-      autoUpdater.on('download-progress', (progressObj) => {
-        let log_message = "Download speed: " + progressObj.bytesPerSecond;
-        log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
-        log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
-        log.info(log_message)
+      // Track download progress
+      autoUpdater.on('download-progress', (d) => {
+        autoUpdater.logger.info('download')
       })
 
-      // Listen for completed update download
+      // Listen for download complete
       autoUpdater.on('update-downloaded', () => {
-        // Close progressWin
+        // close progress window
         if (progressWin) progressWin.close()
 
         // Prompt user to quit and install update
         dialog.showMessageBox({
           type: 'info',
           title: 'Update Ready',
-          message: 'A new version of Readit is ready. Quit and install now?',
+          message: 'ดาวน์โหลดเวอร์ชันใหม่สำเร็จแล้ว ออกจากโปรแกรมเพื่อติดตั้ง?',
           buttons: ['Yes', 'Later']
         }, (buttonIndex) => {
 
-          // Update if 'Yes'
+          // if yes selected
           if (buttonIndex === 0) autoUpdater.quitAndInstall()
         })
       })
